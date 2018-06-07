@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>pl.korbeldaniel.erp2</groupId>
+	<artifactId>parent</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<maven.surefire.skipTests>false</maven.surefire.skipTests>
+		<maven.surefire.plugin.version>2.20</maven.surefire.plugin.version>
+		<maven.failsafe.plugin.version>2.21.0</maven.failsafe.plugin.version>
+
+		<maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+
+	<modules>
+		<module>bom</module>
+		<module>common/pojo</module>
+		<module>common/util</module>
+
+		<module>data/dataPort</module>
+		<module>data/dataAdapter</module>
+
+		<module>logic/logicPort</module>
+		<module>logic/logicAdapter</module>
+
+		<module>access</module>
+		<module>integrationTest</module>
+		
+        <module>ear</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>pl.korbeldaniel.erp2</groupId>
+				<artifactId>bom</artifactId>
+				<version>${project.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven.compiler.plugin.version}</version>
+					<inherited>true</inherited>
+					<configuration>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven.surefire.plugin.version}</version>
+					<configuration>
+						<skipTests>${maven.surefire.skipTests}</skipTests>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>${maven.failsafe.plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<!-- The WildFly plug-in deploys your ear to a local JBoss EAP container. 
+				Due to Maven's lack of intelligence with EARs we need to configure the WildFly 
+				Maven plug-in to skip deployment for all modules. We then enable it specifically 
+				in the ear module. -->
+			<plugin>
+				<groupId>org.wildfly.plugins</groupId>
+				<artifactId>wildfly-maven-plugin</artifactId>
+				<version>1.2.1.Final</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!-- Specifies the build.profile.id property that must be equal than 
+					the name of the directory that contains the profile specific configuration 
+					file. Because the name of the directory that contains the configuration file 
+					of the development profile is dev, we must set the value of the build.profile.id 
+					property to dev. -->
+				<build.profile.id>dev</build.profile.id>
+				<!-- Only unit tests are run when the development profile is active -->
+				<skip.integration.tests>true</skip.integration.tests>
+				<skip.unit.tests>false</skip.unit.tests>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<!-- Specifies the build.profile.id property that must be equal than 
+					the name of the directory that contains the profile specific configuration 
+					file. Because the name of the directory that contains the configuration file 
+					of the integration-test profile is integration-test, we must set the value 
+					of the build.profile.id property to integration-test. -->
+				<build.profile.id>prod</build.profile.id>
+				<!-- Only integration tests are run when the integration-test profile 
+					is active -->
+				<skip.integration.tests>false</skip.integration.tests>
+				<skip.unit.tests>false</skip.unit.tests>
+			</properties>
+		</profile>
+	</profiles>
+
+
+</project>

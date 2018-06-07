@@ -1,0 +1,9 @@
+Adform=window.Adform||{};
+Adform.host="https://track.adform.net";
+Adform.shost="https://s1.adform.net";
+Adform.scriptBase=Adform.shost+"/banners/scripts/";
+Adform.cache="603";
+Adform.ADFBannerData={"URL":"https://track.adform.net/adfserve/?CC=1&bn=21071948;rtbpid=3;rtbinv=${INV_SRC};rtbwp=0.069918-Nv4N00_UFBYckfpZwLAEyzreOrKub0jm0;rtbr=1248019279581940154;rtbcid=${ENC_CID};rtbtpc=${ENC_TPC};rtburl=https%3A%2F%2Fherbertograca.com%2F2017%2F11%2F16%2Fexplicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together%2F;rtbcat=${IAB_CATS};rtbdp=${DATA_PROV};rtbdt=${DATA_TYPE};rtbdc=${DATA_FEE_ENC};rtbplc=${ENC_PLC};rtbrmc=${ENC_RMC};rtbdata=exjhwVc02uQs_AJP4W5vWw6KsGWA7VCnQuJtEc4hKouYj2RG8M5se43hLMFIw4agfelL9ZadEHDM0DMziEEf2uyRbdfdljqpwzM0rc_0gM9ggQsZhekEuyNbKsm72MgeIbQ7T0bB9b2f_Ld6lTy3vEaYutq-Q1JGNQCzIEFHHEkhfsW7lCAZ0rDcIsFt_yTxJYdhAvW_B0SdBobAsxWSZDi5VXYomPtBVmu9mXE4q5psZOEouiZ1SdK6thAqTzsAoSB_hPtr7YA72zXE2hyYXnvcCj6e18GKbkDZ5_zpFW86d9bjG-T0ln9-oRm2V5owZPSVCRcBPzE1;rtbtest=0","CREFURL":"https%3a%2f%2fherbertograca.com%2f2017%2f11%2f16%2fexplicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together%2f","BN":21071948};
+if(!Adform.ADFBannerParams)Adform.ADFBannerParams=[];
+Adform.ADFBannerParams.push(Adform.ADFBannerData);
+typeof Adform.ADFUtilInstance=="undefined"?document.write('<scr'+'ipt type="text/javascript" src="https://s1.adform.net/stoat/603/s1.adform.net/bootstrap.js"></scr'+'ipt>'):new Adform.ADFBanner();
