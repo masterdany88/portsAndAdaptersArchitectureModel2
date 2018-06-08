@@ -1,6 +1,5 @@
 package pl.korbeldaniel.erp2.access;
 
-import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.validation.constraints.Min;
 import javax.ws.rs.Consumes;

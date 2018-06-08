@@ -65,7 +65,7 @@
 				<configuration>
 					<skip>false</skip>
 				</configuration>
-			</plugin>
+			</plugin>      
 		</plugins>
 	</build>
 </project>
